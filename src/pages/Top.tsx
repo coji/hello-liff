@@ -69,12 +69,14 @@ const Top = () => {
 
   return (
     <Box p="4">
-      <Heading>Hello LiFF!</Heading>
+      <Heading>Hello LIFF!</Heading>
 
-      <Stack direction="column">
-        <Avatar src={pictureUrl} name="profileName" />
-        <Text fontSize="sm">{profileName}</Text>
-      </Stack>
+      {profileName && (
+        <Stack direction="row" alignItems="center">
+          <Avatar src={pictureUrl} name={profileName} />
+          <Text fontSize="sm">{profileName}</Text>
+        </Stack>
+      )}
 
       <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
         <Stack>
