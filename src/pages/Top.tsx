@@ -45,6 +45,8 @@ const Top = () => {
         text: `Hello ${name}!`,
       },
     ])
+
+    liff.closeWindow()
   }
   const logout = () => {
     liff.logout()
