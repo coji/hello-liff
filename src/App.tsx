@@ -29,6 +29,8 @@ function App() {
   return (
     <Box p="4">
       <Heading>Hello LiFF!</Heading>
+
+      <div>LIFF ID: {import.meta.env.VITE_LIFF_ID}</div>
       <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
         <Stack>
           <FormControl isInvalid={!!errors.name} isRequired>
