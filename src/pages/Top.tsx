@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import {
   Box,
   Heading,
+  Avatar,
+  Text,
   Stack,
   FormControl,
   FormLabel,
@@ -23,7 +25,6 @@ const Top = () => {
 
   useEffect(() => {
     const initializeLiff = async () => {
-      console.log(import.meta.env.VITE_LIFF_ID)
       await liff.init({
         liffId: import.meta.env.VITE_LIFF_ID,
       })
@@ -47,7 +48,8 @@ const Top = () => {
   }
   const logout = () => {
     liff.logout()
-    setProfileName('')
+    setProfileName(undefined)
+    setPictureUrl(undefined)
   }
   const login = () => {
     if (!liff.isLoggedIn()) {
@@ -69,10 +71,10 @@ const Top = () => {
     <Box p="4">
       <Heading>Hello LiFF!</Heading>
 
-      <div>
-        <div>{profileName}</div>
-        <img src={pictureUrl} />
-      </div>
+      <Stack direction="column">
+        <Avatar src={pictureUrl} name="profileName" />
+        <Text fontSize="sm">{profileName}</Text>
+      </Stack>
 
       <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
         <Stack>
@@ -89,14 +91,11 @@ const Top = () => {
           </FormControl>
 
           <Button type="submit" colorScheme="blue">
-            Submit
+            Say Hello!
           </Button>
 
           {profileName ? (
-            <Stack direction="column">
-              <Button onClick={() => sendMessages()}>Send Message</Button>
-              <Button onClick={() => logout()}>SignOut</Button>
-            </Stack>
+            <Button onClick={() => logout()}>SignOut</Button>
           ) : (
             <Button onClick={() => login()}>SignIn</Button>
           )}
