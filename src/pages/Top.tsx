@@ -38,11 +38,11 @@ const Top = () => {
     initializeLiff()
   }, [])
 
-  const sendMessages = async () => {
+  const sendMessages = async (name: string) => {
     await liff.sendMessages([
       {
         type: 'text',
-        text: 'Hello World',
+        text: `Hello ${name}!`,
       },
     ])
   }
@@ -64,7 +64,7 @@ const Top = () => {
   } = useForm<FormData>()
 
   const handleFormSubmit = (data: FormData) => {
-    alert(JSON.stringify(data))
+    sendMessages(data.name)
   }
 
   return (
